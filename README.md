@@ -17,6 +17,7 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 - `KV_ID`：KV 命名空间 ID。
 - `NZ_BASEURL`：面板地址，例如 `https://ops.naibahq.com`。
 - `LANG`：语言，可选 `en` `zh-CN`，默认为 `en`。
+- `TZ`：时区，默认为 `UTC`。
 - `ENDPOINT_PATH`：接收 Telegram Webhook 的路由路径，例如 `/endpoint`。
 - `TELEGRAM_BOT_TOKEN`：从 BotFather 那里获取的机器人 Token。
 - `TELEGRAM_SECRET`：Webhook 认证密钥。
@@ -37,6 +38,7 @@ Inspired by https://github.com/nezhahq/Nezha-Telegram-Bot-V1
 
 - `NZ_BASEURL`：面板地址，例如 `https://ops.naibahq.com`。
 - `LANG`：语言，可选 `en` `zh-CN`，默认为 `en`。
+- `TZ`：时区，默认为 `UTC`。
 - `ENDPOINT_PATH`：接收 Telegram Webhook 的路由路径，例如 `/endpoint`。
 
 5. 创建以下 Secrets：

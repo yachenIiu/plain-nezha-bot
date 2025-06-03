@@ -27,6 +27,7 @@ id = "kv_namespace_id"
 NZ_BASEURL="https://www.example.com"
 LANG="en"
 ENDPOINT_PATH = "/endpoint"
+TZ="UTC"
 
 [triggers]
 crons = ["*/30 * * * *"]

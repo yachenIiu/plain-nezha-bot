@@ -4,6 +4,7 @@ import * as nezha from '../../types/nezha';
 import { NezhaAPIClient } from '../nezha/api';
 import { nezhaUtils, getFlagEmoji } from '../utils';
 import i18next from '../translations';
+import time from '../utils/time';
 
 export class TelegramHandlers {
 	private readonly uid: number;
@@ -160,10 +161,10 @@ ${md.inlineCode('/help')} - ${i18next.t('Print help messages')}
 			text: md.build(md`
 🛣 ${md.bold(matchedServiceName)}
 ==========================
-${i18next.t('Cycle Start')}: ${new Date(matchedService.from).toLocaleString(i18next.t('locale'))}
-${i18next.t('Cycle End')}: ${new Date(matchedService.to).toLocaleString(i18next.t('locale'))}
+${i18next.t('Cycle Start')}: ${time.dateStr(matchedService.from)}
+${i18next.t('Cycle End')}: ${time.dateStr(matchedService.to)}
 ${this.formatTransferMessage(matchedService).join('\n')}
-${i18next.t('Last Updated At')}: ${md.bold(new Date().toLocaleString(i18next.t('locale')))}
+${i18next.t('Last Updated At')}: ${time.dateStr()}
             `),
 			withInline: true,
 			inlineKeyboard: [
@@ -186,7 +187,7 @@ ${i18next.t('Server')}: ${name}
 ${i18next.t('Usage')}: ${nezhaUtils.formatUsage(service.transfer[sid], service.max)}% ${nezhaUtils.formatBytes(
 				service.transfer[sid],
 			)}/${nezhaUtils.formatBytes(service.max)}
-${i18next.t('Next Update Time')}: ${new Date(service.next_update[sid]).toLocaleString(i18next.t('locale'))}
+${i18next.t('Next Update Time')}: ${time.dateStr(service.next_update[sid])}
             `,
 		);
 	}
@@ -217,7 +218,7 @@ ${i18next.t('Current Status')}: ${matchedService.up[29] > matchedService.down[29
 ${i18next.t('Availability')}: ${nezhaUtils.formatUsage(matchedService.total_up - matchedService.total_down, matchedService.total_up)}%
 ${i18next.t('Average Delay')}: ${avgDelay.toFixed(2)}ms
 
-${i18next.t('Last Updated At')}: ${md.bold(new Date().toLocaleString(i18next.t('locale')))}
+${i18next.t('Last Updated At')}: ${time.dateStr()}
                 `),
 			withInline: true,
 			inlineKeyboard: [
@@ -285,7 +286,7 @@ ${i18next.t('Traffic')}: ↓${nezhaUtils.formatBytes(stats.net_in_transfer)} ↑
 ${i18next.t('NIC')}: ↓${nezhaUtils.formatBytes(stats.net_in_speed)}/s ↑${nezhaUtils.formatBytes(stats.net_out_speed)}/s
 ${i18next.t('Traffic Symmetry')}: ${nezhaUtils.formatUsage(stats.net_out_transfer, stats.net_in_transfer)}%
 
-${i18next.t('Last Updated At')}: ${md.bold(new Date().toLocaleString(i18next.t('locale')))}
+${i18next.t('Last Updated At')}: ${md.bold(time.dateStr())}
             `),
 			withInline: true,
 			inlineKeyboard: inlineKeyboard,
@@ -399,7 +400,7 @@ ${i18next.t('Disk')}: ${nezhaUtils.formatUsage(server.state.disk_used, server.ho
 ${i18next.t('Traffic')}: ↓${nezhaUtils.formatBytes(server.state.net_in_transfer)} ↑${nezhaUtils.formatBytes(server.state.net_out_transfer)}
 ${i18next.t('NIC')}: ↓${nezhaUtils.formatBytes(server.state.net_in_speed)}/s ↑${nezhaUtils.formatBytes(server.state.net_out_speed)}/s
 
-${i18next.t('Last Updated At')}: ${md.bold(new Date().toLocaleString(i18next.t('locale')))}
+${i18next.t('Last Updated At')}: ${md.bold(time.dateStr())}
         `);
 	}
 

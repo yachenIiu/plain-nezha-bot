@@ -1,5 +1,5 @@
 import * as nezha from '../../types/nezha';
-import { buildUrl, log } from '../utils';
+import { buildUrl } from '../utils';
 
 export interface NezhaAPIClientProps {
 	base_url: string;
@@ -59,8 +59,8 @@ export class NezhaAPIClient {
 			this.token = req.token;
 			await this.cache.put('NZ_TOKEN', req.token);
 		} catch (error) {
-			log('Refresh failed, perhaps the token is expired. Acquiring new token');
-			log('The error message is:', (error as Error).message);
+			console.log('Refresh failed, perhaps the token is expired. Acquiring new token');
+			console.log('The error message is:', (error as Error).message);
 			await this.getToken();
 		}
 	}

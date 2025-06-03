@@ -7,31 +7,6 @@ export function buildUrl(path: string, data?: any): string {
 	return url.toString();
 }
 
-export function binarySearch<E, T>(arr: E[], target: T, compare_fn: (a: E, b: T) => number): [number, boolean] {
-	let i = 0;
-	let n = arr.length;
-	let j = n;
-	while (i < j) {
-		let k = (i + j) >> 1;
-		if (compare_fn(arr[k], target) < 0) {
-			i = k + 1;
-		} else {
-			j = k;
-		}
-	}
-	return [i, i < n && compare_fn(arr[i], target) === 0];
-}
-
-export function compare<T>(a: T, b: T) {
-	if (a < b) {
-		return -1;
-	} else if (a > b) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-
 export const nezhaUtils = {
 	isOffline: (lastActive: string) => {
 		const date = new Date(lastActive);
@@ -57,16 +32,4 @@ export function getFlagEmoji(countryCode?: string) {
 	if (!countryCode) return '❔️';
 
 	return countryCode.toUpperCase().replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
-}
-
-export function log(...data: any[]) {
-	const now = new Date();
-	const formattedTime = now.toISOString();
-	console.log(`[${formattedTime}]`, ...data);
-}
-
-export function error(...data: any[]) {
-	const now = new Date();
-	const formattedTime = now.toISOString();
-	console.error(`[${formattedTime}]`, ...data);
 }

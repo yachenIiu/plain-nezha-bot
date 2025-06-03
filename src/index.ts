@@ -2,7 +2,7 @@ import { TelegramHandlers } from './lib/telegram/handlers';
 import { Telegram } from './lib/telegram/api';
 import { Update } from './types/telegram';
 import { NezhaAPIClient } from './lib/nezha/api';
-import { log, error } from './lib/utils';
+import time from './lib/utils/time';
 import i18next from './lib/translations';
 
 export default {
@@ -19,6 +19,7 @@ export default {
 		});
 
 		i18next.changeLanguage(env.LANG);
+		time.updateTimezoneLocale(env.TZ, i18next.t('locale'));
 
 		const handlers = new TelegramHandlers({ uid: parseInt(env.TELEGRAM_UID), nzClient: nezha });
 		registerAllCommands(telegram, handlers);
@@ -154,12 +155,12 @@ function registerAllCommands(client: Telegram, handlers: TelegramHandlers) {
 }
 
 async function refreshToken(nezha: NezhaAPIClient) {
-	log('refreshing token...');
+	console.log('refreshing token...');
 
 	try {
 		await nezha.refreshToken();
 	} catch (e) {
-		error('refresh failed: ', (e as Error).message);
+		console.error('refresh failed: ', (e as Error).message);
 	}
-	log('refresh succeeded.');
+	console.log('refresh succeeded.');
 }

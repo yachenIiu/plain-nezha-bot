@@ -16,7 +16,7 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "latest"
+          bun-version: 'latest'
 
       - name: Install dependencies
         run: bun install
@@ -27,7 +27,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           preCommands: |
             sed -i 's/kv_namespace_id/${{ secrets.KV_ID }}/g' wrangler.toml
-          command: deploy --var NZ_BASEURL:${{ secrets.NZ_BASEURL }} LANG:${{ secrets.LANG }} ENDPOINT_PATH:${{ secrets.ENDPOINT_PATH }}
+          command: deploy --var NZ_BASEURL:${{ secrets.NZ_BASEURL }} LANG:${{ secrets.LANG }} TZ:${{ secrets.TZ }} ENDPOINT_PATH:${{ secrets.ENDPOINT_PATH }}
           secrets: |
             TELEGRAM_BOT_TOKEN
             TELEGRAM_SECRET
