@@ -26,6 +26,10 @@ export const nezhaUtils = {
 		const result = (used / total) * 100;
 		return isNaN(result) ? '0' : result.toFixed(2);
 	},
+	convertSecondsToDays: (seconds: number) => {
+		const secondsInADay = 24 * 60 * 60;
+		return Math.ceil(seconds / secondsInADay);
+	},
 };
 
 export function getFlagEmoji(countryCode?: string) {

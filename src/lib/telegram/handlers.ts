@@ -385,7 +385,7 @@ ${i18next.t('Platform')}: ${server.host.platform || 'Unknown'}
 ${i18next.t('CPU Model(s)')}: ${server.host.cpu.join(',')}${
 			server.host.gpu ? `\n${i18next.t('GPU Model(s)')}: ${server.host.gpu.join(',')}` : ''
 		}
-${i18next.t('Uptime')}: ${new Date(server.state.uptime).getDay()} ${i18next.t('Days')}
+${i18next.t('Uptime')}: ${nezhaUtils.convertSecondsToDays(server.state.uptime)} ${i18next.t('Days')}
 ${i18next.t('Load')}: ${server.state.load_1 || 0} ${server.state.load_5 || 0} ${server.state.load_15 || 0}
 ${i18next.t('CPU Usage')}: ${server.state.cpu ? server.state.cpu.toFixed(2) : 0}%
 ${i18next.t('Memory')}: ${nezhaUtils.formatUsage(server.state.mem_used, server.host.mem_total)}% ${nezhaUtils.formatBytes(
