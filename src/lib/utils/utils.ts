@@ -12,7 +12,7 @@ export const nezhaUtils = {
 		const date = new Date(lastActive);
 		const now = new Date();
 
-		const state = (now.getTime() - date.getTime()) / 1000 > 30 ? true : false;
+		const state = (now.getTime() - date.getTime()) / 1000 > 600 ? true : false;
 		return state;
 	},
 	formatBytes: (bytes: number) => {
